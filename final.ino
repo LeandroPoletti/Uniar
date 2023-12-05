@@ -24,7 +24,7 @@ private:
 
 public:
   Display(byte posMemoria, int qntdColunas, int qntdLinhas): lcd(posMemoria,qntdColunas,qntdLinhas) {};
-
+  ~Display(){}
 
   void iniciar(){
     lcd.init();
@@ -67,7 +67,7 @@ class LeitorTemperatura{
 
   public:
     LeitorTemperatura(int pino, BluetoothSerial a): leitor(pino,DHT22), SerialBT(a), indice(0) {};
-
+    ~LeitorTemperatura(){}
     void inicializar(){
       leitor.begin();
     }
@@ -89,33 +89,6 @@ class LeitorTemperatura{
       return media / 5.;
     }
 
-    
-
-//     float gerarTemperaturaMedia(int nLeituras){
-//       float total = 0;
-//       float media = 0;
-//       for (int i = 0; i < nLeituras; i++)
-//       {
-//         char func;
-//         delay(3000);
-//         //Serial.println(leitor.readTemperature());
-//         total += leitor.readTemperature();
-//          if (SerialBT.available()) {
-//           func = (char) SerialBT.read();
-
-//           if(func=='1'){
-//             Serial.write("aumentar");
-//           }else if(func == '2'){
-//             Serial.write("diminuir");
-//     }
-// }
-//       }
-
-//       media = total/nLeituras;
-      
-//       return media;
-//     }
-    
 };
 
 Display tela(0x27,16,2);
@@ -163,8 +136,6 @@ void setup() {
 void loop() {
   
   scheduler.loop();
-
-
 }
 
 // put function definitions here:
